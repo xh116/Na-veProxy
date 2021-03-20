@@ -2,12 +2,14 @@ FROM ubuntu:latest AS builder
 
 WORKDIR /build
 RUN apt-get update \
- && apt-get install -y git ninja-build pkg-config libnss3-dev curl unzip ccache   \
+ && apt-get install -y git ninja-build pkg-config libnss3-dev curl unzip ccache tzdata  \
         curl unzip \
  && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
  && cd naiveproxy/src \
  && ./get-clang.sh \
  && ./build.sh
+
+ENV TZ=Asia/Shanghai
 
 FROM ubuntu
 
