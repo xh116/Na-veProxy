@@ -2,9 +2,9 @@ FROM ubuntu:latest AS builder
 
 WORKDIR /build
 RUN apt-get update \
- && apt-get install -y git ninja-build python pkg-config libnss3 ccache  \
+ && apt-get install -y git ninja-build pkg-config libnss3-dev curl unzip ccache   \
         curl unzip \
- && git clone -b master --depth 1 https://github.com/klzgrad/naiveproxy.git \
+ && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
  && cd naiveproxy/src \
  && ./get-clang.sh \
  && ./build.sh
