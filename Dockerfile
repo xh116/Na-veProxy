@@ -1,7 +1,7 @@
 # Https://github.com/xh116 modified
 # thanks to https://github.com/klzgrad/naiveproxy
 
-FROM ubuntu:18.04 AS builder
+FROM ubuntu:latest AS builder
 
 WORKDIR /build
 ENV TZ=Asia/Shanghai
@@ -9,14 +9,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update \
  && apt-get install -y git ninja-build python pkg-config libnss3-dev curl unzip ccache tzdata  \
-        curl unzip \
  && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
  && cd naiveproxy/src \
  && ./get-clang.sh \
  && ./build.sh
 
 
-FROM ubuntu
+FROM ubuntu:latest
 
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
 
