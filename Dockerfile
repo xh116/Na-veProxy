@@ -1,7 +1,7 @@
 # Https://github.com/xh116 modified
 # thanks to https://github.com/klzgrad/naiveproxy
 
-FROM ubuntu:latest AS builder
+FROM ubuntu:18.04 AS builder
 
 WORKDIR /build
 ENV TZ=Asia/Shanghai
@@ -15,7 +15,7 @@ RUN apt-get update \
  && ./build.sh
 
 
-FROM ubuntu:latest
+FROM ubuntu
 
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
 
