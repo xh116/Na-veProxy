@@ -1,7 +1,7 @@
 # Https://github.com/xh116 modified
 # thanks to https://github.com/klzgrad/naiveproxy
 
-FROM ubuntu:latest AS builder
+FROM ubuntu:18.04 AS builder
 
 WORKDIR /build
 ENV TZ=Asia/Shanghai
