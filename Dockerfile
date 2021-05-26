@@ -10,7 +10,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 
 RUN apt update \
- && apt install -y git ninja-build python pkg-config libnss3-dev llvm ccache curl unzip \
+ && apt install -y git ninja-build python pkg-config llvm ccache curl unzip \
  && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
  && cd naiveproxy/src \
  && ./get-clang.sh \
@@ -22,7 +22,6 @@ FROM ubuntu
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
 
 RUN apt update \
- && apt install -y libnss3 \
  && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "naive" ]
