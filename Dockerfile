@@ -7,15 +7,13 @@ WORKDIR /build
 
 
 RUN apt-get update \
- && apt-get install -y git ninja-build python pkg-config libnss3-dev curl unzip ccache tzdata libtinfo5  \
+ && apt-get install -y git ninja-build python pkg-config libnss3-dev curl unzip ccache libtinfo5  \
  && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
  && cd naiveproxy/src \
  && ./get-clang.sh \
  && ./build.sh
  
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
+ 
 FROM ubuntu
 
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
