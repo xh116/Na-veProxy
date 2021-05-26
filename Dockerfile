@@ -21,8 +21,5 @@ FROM ubuntu
 
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
 
-RUN apt update \
- && rm -rf /var/lib/apt/lists/*
-
 ENTRYPOINT [ "naive" ]
 CMD [ "config.json" ]
