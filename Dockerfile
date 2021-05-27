@@ -8,7 +8,7 @@ RUN apk add --no-cache --virtual .build-deps \
       tar xJvf - -C / \
     && strip /naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64/naive \
     && mv /naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64/naive /usr/local/bin/naive \
-    && rm -rf naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64.tar.xz 
+    && rm -rf naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64.tar.xz \
     && apk del .build-deps
  
 ENTRYPOINT [ "naive" ] 
