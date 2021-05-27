@@ -13,4 +13,4 @@ RUN apt install curl \
   
 
 ENTRYPOINT [ "/naiveproxy/naive" ]
-CMD [ "/naiveproxyconfig.json" ]
+CMD [ "/naiveproxy/config.json" ]
