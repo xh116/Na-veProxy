@@ -4,15 +4,16 @@
 
 FROM debian:latest
 
-ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
+ENV NAIVEPROXY_VERSION=v90.0.4430.85-10 \
+    LANG en_US.utf8
 
 
 RUN apt-get update && apt-get install -y curl xz-utils && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
     && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz | \
       tar xJvf - -C / \
     && mv /naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
     
-ENV LANG en_US.utf8
 
 
 ENTRYPOINT [ "naive" ]
