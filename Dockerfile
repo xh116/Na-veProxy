@@ -19,7 +19,7 @@ RUN apk add --no-cache --virtual .build-deps \
 # dependency of naiveproxy
 RUN apk add --no-cache nss
 
-COPY ./services /etc/services.d/
+COPY /naiveproxy/naive /usr/local/bin/naive
 
 ENTRYPOINT [ "naive" ]
 CMD [ "config.json" ]
