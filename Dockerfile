@@ -9,10 +9,7 @@ ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
 RUN apt install curl \
   && curl https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
   && tar xJvf naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \ 
-  && mv naiveproxy-* naiveproxy \
-  && strip /naiveproxy/naive 
   
-  
-
+ 
 ENTRYPOINT [ "/naiveproxy/naive" ]
 CMD [ "/naiveproxy/config.json" ]
