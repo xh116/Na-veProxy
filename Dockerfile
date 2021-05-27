@@ -19,5 +19,5 @@ RUN apk add --no-cache --virtual .build-deps \
 # dependency of naiveproxy
 RUN apk add --no-cache nss
 
-ENTRYPOINT [ "naive" ]
+ENTRYPOINT [ "naiveproxy/naive" ]
 CMD [ "config.json" ]
