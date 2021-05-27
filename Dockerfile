@@ -11,8 +11,7 @@ RUN apt-get update \
   && mkdir -p /naiveproxy \ 
   && wget -P /naiveproxy https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
   && tar xJvf /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz
-  
-COPY /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
+  && mv /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
 
 ENTRYPOINT [ "naive" ]
 CMD [ "config.json" ]
