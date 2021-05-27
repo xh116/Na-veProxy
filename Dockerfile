@@ -6,7 +6,8 @@ FROM alpine:latest
 
 ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
 
-RUN apk add curl -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x86.tar.xz | \
+RUN apk add curl \
+  && curl -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x86.tar.xz | \
     tar xJvf - -C / && mv naiveproxy-* naiveproxy \
   && strip /naiveproxy/naive 
   
