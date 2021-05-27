@@ -6,7 +6,8 @@ FROM debian:latest
 
 ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
 
-RUN apt-get install -y curl \
+RUN apt-get update \
+  && apt-get install -y curl \
   && curl https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
   && mkdir -p /naiveproxy \ 
   && tar xJvf naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz 
