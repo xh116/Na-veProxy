@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y curl xz-utils && rm -rf /var/lib/apt/li
     && mkdir -p /naiveproxy \ 
     && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz | \
       tar xJvf - -C / && mv naiveproxy-* naiveproxy \
+    && strip /naiveproxy/naive \
     && mv /naiveproxy/naive /usr/local/bin/naive
     
 ENV LANG en_US.utf8
