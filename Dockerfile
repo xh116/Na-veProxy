@@ -9,10 +9,9 @@ ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
 RUN apt-get update \
   && apt-get install -y curl xz-utils \
   && mkdir -p /naiveproxy \ 
-  && curl -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz -o /naiveproxy \
-  && tar xJvf /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
-  && chmod +x /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64 \
-  && mv /naiveproxy/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
+  && curl -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
+  && tar xJvf naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz \
+  && mv /naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
 
 ENTRYPOINT [ "naive" ]
 CMD [ "config.json" ]
