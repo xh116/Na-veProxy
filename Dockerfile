@@ -10,5 +10,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && mv /naiveproxy/naive /usr/local/bin/naive \
     && apk del .build-deps
 
+RUN apk add --no-cache libstdc++ libc6-compat
+
 ENTRYPOINT [ "naive" ] 
 CMD [ "config.json" ]
