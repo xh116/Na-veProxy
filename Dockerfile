@@ -1,15 +1,11 @@
-# Https://github.com/xh116 modified
-# thanks to https://github.com/klzgrad/naiveproxy
-
-
-FROM debian:buster-slim
+FROM alpine:latest
 
 ENV NAIVEPROXY_VERSION=v90.0.4430.85-10
 
-RUN apt-get update && apt-get install -y curl xz-utils && rm -rf /var/lib/apt/lists/* \
-    && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-linux-x64.tar.xz | \
+RUN apk add --no-cache --virtual && apk add curl binutils \
+    && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${NAIVEPROXY_VERSION}/naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64.tar.xz| \
       tar xJvf - -C / \
-    && mv /naiveproxy-${NAIVEPROXY_VERSION}-linux-x64/naive /usr/local/bin/naive
+    && mv /naiveproxy-${NAIVEPROXY_VERSION}-openwrt-x86_64/naive /usr/local/bin/naive
  
 ENTRYPOINT [ "naive" ]
 CMD [ "config.json" ]
