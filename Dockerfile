@@ -10,8 +10,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && mv /naiveproxy/naive /usr/local/bin/naive \
     && apk del .build-deps
 
-RUN apk update && \ 
-    apk upgrade
+RUN apk add libstdc++ libgcc 
     
 ENTRYPOINT [ "naive" ] 
 CMD [ "config.json" ]
