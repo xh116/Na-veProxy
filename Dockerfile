@@ -1,7 +1,7 @@
 # Https://github.com/xh116 modified
 # thanks to https://github.com/klzgrad/naiveproxy
 
-FROM ubuntu:latest AS builder
+FROM debian:buster AS builder
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -16,7 +16,7 @@ RUN apt update \
  && ./build.sh
  
  
-FROM ubuntu
+FROM debian
 
 COPY --from=builder /build/naiveproxy/src/out/Release/naive /usr/local/bin/naive
 
