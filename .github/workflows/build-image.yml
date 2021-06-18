@@ -27,15 +27,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag xh116/naiveproxy:latest
+    - name: Checkout
+      uses: actions/checkout@v2
       
-    - name: Docker Push
-      run: docker push xh116/naiveproxy
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        #registry: docker.pkg.github.com
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        push: true
+        tags: xh116/naiveproxy:latest,xh116/naiveproxy:91
