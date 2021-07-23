@@ -11,6 +11,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del .build-deps
 
 RUN apk add --no-cache libstdc++ 
+
+COPY /entrypoint.sh /
     
-ENTRYPOINT [ "naive" ] 
-CMD [ "config.json" ]
+ENTRYPOINT [ "/entrypoint.sh" ] 
+CMD ["naive", "config.json" ]
