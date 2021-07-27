@@ -1,4 +1,4 @@
-FROM ubuntu:21.04 AS builder
+FROM ubuntu:latest AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 
