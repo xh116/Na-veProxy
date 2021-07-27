@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -qq install git python ninja-build pkg-config curl
     
 FROM alpine:latest 
 
-COPY /entrypoint.sh /
+#COPY /entrypoint.sh /
 COPY --from=builder /naiveproxy/src/out/Release/naive /usr/local/bin/
 
 RUN apk add --no-cache \
@@ -20,8 +20,8 @@ RUN apk add --no-cache \
  bash  \
  iptables  \
  libstdc++ \
- rm -rf /var/cache/apk/* && \
- chmod a+x /entrypoint.sh
+ rm -rf /var/cache/apk/*  
+ #chmod a+x /entrypoint.sh
     
-ENTRYPOINT [ "/entrypoint.sh" ] 
+#ENTRYPOINT [ "/entrypoint.sh" ] 
 CMD ["naive", "config.json" ]
