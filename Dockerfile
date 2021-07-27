@@ -12,9 +12,9 @@ RUN apt-get update && apt-get -qq install git python ninja-build pkg-config curl
     ccache -s \
     && $TARGET ./build.sh && \ 
     ccache -s \
-    && ls \
-    && ls /naiveproxy/src/out/Release/ \
-    && ls /NAIVE
+    && ls -la ./out/Release/ \
+    && pwd
+     
     #&& tar -xJvf $(find ./out/Release/ -name "*naiveproxy*openwrt-x86_64*") \
     
 FROM alpine:latest 
