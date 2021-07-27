@@ -1,13 +1,13 @@
 FROM ubuntu:latest AS builder
 
 
-RUN apt-get update && apt-get install -y git python ninja-build  pkg-config curl unzip ccache \
+RUN apt-get update && apt-get -y installgit python ninja-build pkg-config curl unzip ccache \
     && git clone --depth 1 https://github.com/klzgrad/naiveproxy.git \
     && cd naiveproxy/src \
     && ./get-clang.sh \
     && ./build.sh \
-    && tar -xf ./out/Release/naive/naiveproxy-v92.0.4515.107-1-openwrt-x86_64.tar.xz \
-    && mv naiveproxy-* naiveproxy  
+    && tar -xJvf $(find ./out/Release/ -name "*naiveproxy*openwrt-x86_64*") \
+    && mv naiveproxy-* naiveproxy 
 
 
 FROM alpine:latest 
