@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -qq install git python ninja-build pkg-config curl
 FROM alpine:latest 
 
 COPY /entrypoint.sh /
-COPY --from=builder /naiveproxy/src/out/Release/naive /usr/local/bin/naive 
+COPY --from=builder /naiveproxy/src/out/Release/naive /usr/local/bin/
 
 RUN apk add --no-cache \
  ca-certificates  \
