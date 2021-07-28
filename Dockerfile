@@ -25,7 +25,7 @@ FROM debian:stable-slim
 #COPY /entrypoint.sh /
 COPY --from=builder /NAIVE/naiveproxy/src/naive /usr/local/bin/
 
-
+RUN apt-get update && apt-get install libc6-dev
  #chmod a+x /entrypoint.sh
     
 #ENTRYPOINT [ "/entrypoint.sh" ] 
