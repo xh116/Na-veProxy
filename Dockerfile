@@ -6,7 +6,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-openwrt-x86_64.tar.xz|  \
       tar xJvf - -C / && mv naiveproxy-* naiveproxy  \
     && strip /naiveproxy/naive  \
-    && mv /naiveproxy/naive /usr/local/bin/naive 
+    && mv /naiveproxy/naive /usr/local/bin/naive \
+    && apk del .build-deps
  
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
