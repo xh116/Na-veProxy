@@ -1,4 +1,4 @@
 # NaiveProxy
-Naiveproxy for Docker
+Naiveproxy Client for Docker
 
 
