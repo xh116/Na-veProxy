@@ -13,7 +13,7 @@ RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 COPY /entrypoint.sh /
 
-RUN apk --no-cache add iptables ca-certificates bash libstdc++ git tzdata &&\
+RUN apk --no-cache add iptables ca-certificates bash libstdc++ tzdata &&\
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
     apk del tzdata &&\
     rm -rf /var/cache/apk/* &&\
