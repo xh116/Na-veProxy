@@ -1,4 +1,6 @@
 FROM --platform=${BUILDPLATFORM} alpine:latest AS builder
+
+WORKDIR /naive
 ARG TARGETPLATFORM
 RUN case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCH=openwrt-x86_64  ;; \
@@ -19,7 +21,7 @@ RUN case ${TARGETPLATFORM} in \
 
 FROM alpine:latest
 
-COPY --from=builder /root/naiveproxy/naive /usr/local/bin/naive
+COPY --from=builder /naive/naiveproxy/naive /usr/local/bin/naive
  
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
