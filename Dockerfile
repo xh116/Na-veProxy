@@ -11,7 +11,6 @@ RUN case ${TARGETPLATFORM} in \
  && export VERSION=$(curl -s "https://api.github.com/repos/klzgrad/naiveproxy/releases/latest" | jq -r .tag_name)  \   
  && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-${ARCH}.tar.xz | \
     tar xJvf - -C / && mv naiveproxy-* naiveproxy  \
- && strip /naiveproxy/naive  \
  && apk del .build-deps  
  
 
