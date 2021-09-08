@@ -12,7 +12,9 @@ RUN case ${TARGETPLATFORM} in \
     tar xJvf - -C / && mv naiveproxy-* naiveproxy  \
  && strip /naiveproxy/naive  \
  && mv /naiveproxy/naive /usr/local/bin/naive \
- && apk del .build-deps
+ && apk del .build-deps \
+ && pwd \
+ && ls \
  
 
 FROM alpine:latest
