@@ -1,9 +1,9 @@
 FROM --platform=${BUILDPLATFORM} alpine:latest AS builder
 ARG TARGETPLATFORM
 RUN case ${TARGETPLATFORM} in \
-         "linux/amd64")  ARCH=amd64-openwrt-x86_64  ;; \
-         "linux/arm64")  ARCH=linux-arm64  ;; \
-         "linux/arm/v7") ARCH=linux-arm  ;; \
+         "linux/amd64")  ARCH=openwrt-x86_64  ;; \
+         "linux/arm64")  ARCH=openwrt-aarch64_generic ;; \
+         "linux/arm/v7") ARCH=openwrt-arm_cortex-a15_neon-vfpv4 ;; \
     esac && \
     apk add --no-cache --virtual .build-deps \
     curl binutils jq \       
