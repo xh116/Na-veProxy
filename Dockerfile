@@ -19,5 +19,5 @@ RUN apk --no-cache add iptables ca-certificates bash libstdc++ tzdata &&\
     rm -rf /var/cache/apk/* &&\
     chmod a+x /entrypoint.sh
     
-ENTRYPOINT [ "/entrypoint.sh" ] 
+#ENTRYPOINT [ "/entrypoint.sh" ] 
 CMD ["naive", "config.json" ]
