@@ -29,6 +29,8 @@ jobs:
       - name: Get current date
         id: date
         run: echo "::set-output name=today::$(date +'%Y-%m-%d')"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
         
       - name: Set up Docker Buildx
         id: buildx
