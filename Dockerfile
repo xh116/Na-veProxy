@@ -14,7 +14,7 @@ RUN case ${TARGETPLATFORM} in \
  && mv /naiveproxy/naive /usr/local/bin/naive \
  && apk del .build-deps \
  && pwd \
- && ls \
+ && ls 
  
 
 FROM alpine:latest
