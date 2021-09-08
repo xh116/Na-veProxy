@@ -1,6 +1,5 @@
 FROM --platform=${BUILDPLATFORM} alpine:latest AS builder
 
-WORKDIR /naive
 ARG TARGETPLATFORM
 RUN case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCH=openwrt-x86_64  ;; \
@@ -13,15 +12,12 @@ RUN case ${TARGETPLATFORM} in \
  && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-${ARCH}.tar.xz | \
     tar xJvf - -C / && mv naiveproxy-* naiveproxy  \
  && strip /naiveproxy/naive  \
- && mv /naiveproxy/naive /usr/local/bin/naive \
- && apk del .build-deps \
- && pwd \
- && ls 
+ && apk del .build-deps  
  
 
 FROM alpine:latest
 
-COPY --from=builder /naive/naiveproxy/naive /usr/local/bin/naive
+COPY --from=builder /naiveproxy/naive /usr/local/bin/naive
  
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
