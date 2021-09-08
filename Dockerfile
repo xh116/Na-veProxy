@@ -4,11 +4,9 @@ RUN case ${TARGETPLATFORM} in \
          "linux/amd64")  ARCH=amd64-openwrt-x86_64  ;; \
          "linux/arm64")  ARCH=linux-arm64  ;; \
          "linux/arm/v7") ARCH=linux-arm  ;; \
-    esac  
-    
- RUN apk add --no-cache --virtual .build-deps \
-     curl binutils jq \  
-     
+    esac && \
+    apk add --no-cache --virtual .build-deps \
+    curl binutils jq \       
  && export VERSION=$(curl -s "https://api.github.com/repos/klzgrad/naiveproxy/releases/latest" | jq -r .tag_name)  \   
  && curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-${ARCH}.tar.xz | \
     tar xJvf - -C / && mv naiveproxy-* naiveproxy  \
