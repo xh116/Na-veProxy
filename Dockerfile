@@ -16,6 +16,9 @@ RUN case ${TARGETPLATFORM} in \
 
 FROM alpine:latest
 
+LABEL maintainer="cx@tinyserve.com"
+
+
 COPY --from=builder /naiveproxy/naive /usr/local/bin/naive
  
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
